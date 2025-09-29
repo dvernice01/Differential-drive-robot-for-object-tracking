@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;VL53L5CX_SimpleRanging&apos;" deleteContents="false" description="Delete resource &apos;VL53L5CX_SimpleRanging&apos;" element1="/VL53L5CX_SimpleRanging" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1751358575121"/>
+</session>

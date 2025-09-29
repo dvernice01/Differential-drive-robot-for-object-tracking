@@ -1,0 +1,10 @@
+17:20:53 **** Incremental Build of configuration Debug for project HandTracking ****
+make -j8 all 
+arm-none-eabi-size  HandTracking.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 128432	    128	   4840	 133400	  20918	HandTracking.elf
+Finished building: default.size.stdout
+ 
+
+17:20:53 Build Finished. 0 errors, 0 warnings. (took 300ms)
+

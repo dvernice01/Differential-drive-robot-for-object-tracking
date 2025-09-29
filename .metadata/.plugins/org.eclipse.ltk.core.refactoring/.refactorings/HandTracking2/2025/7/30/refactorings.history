@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;HandTracking2/HandTracking.ioc&apos; to &apos;HandTracking2.ioc&apos;" description="Rename resource &apos;HandTracking.ioc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="HandTracking.ioc" name="HandTracking2.ioc" stamp="1753079753253" updateReferences="true"/>
+</session>

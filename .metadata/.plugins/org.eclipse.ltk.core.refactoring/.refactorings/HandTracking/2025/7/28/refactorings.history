@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;HandTracking/Core/Inc/RTE_Components.H&apos; to &apos;RTE_Components.h&apos;" description="Rename resource &apos;RTE_Components.H&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/RTE_Components.H" name="RTE_Components.h" stamp="1752065007659" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;HandTracking/TOF/Target+&apos; to &apos;Target&apos;" description="Rename resource &apos;Target+&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="TOF/Target+" name="Target" stamp="1752066888530" updateReferences="true"/>
+</session>

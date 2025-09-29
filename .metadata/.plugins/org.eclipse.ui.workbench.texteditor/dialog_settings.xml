@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="searchhistory">
+		<item value="check"/>
+		<item value="get_result"/>
+		<item value="get"/>
+		<item value="start"/>
+		<item value="vl53l5cx_get_resolution"/>
+		<item value="results"/>
+		<item value="sensor_ready"/>
+		<item value="__disa"/>
+		<item value="distance"/>
+		<item value="printf"/>
+		<item value="ok"/>
+		<item value="ready"/>
+		<item value="profile"/>
+		<item value="_Write"/>
+		<item value="RANGING_SENSOR_Capabilities_t"/>
+	</list>
+</section>

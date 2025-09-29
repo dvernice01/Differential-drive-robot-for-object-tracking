@@ -1,0 +1,10 @@
+08:52:12 **** Incremental Build of configuration Debug for project prova ****
+make -j8 all 
+arm-none-eabi-size  prova.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 123008	    164	   8324	 131496	  201a8	prova.elf
+Finished building: default.size.stdout
+ 
+
+08:52:13 Build Finished. 0 errors, 0 warnings. (took 1s.225ms)
+

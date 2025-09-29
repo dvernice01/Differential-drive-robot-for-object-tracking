@@ -1,0 +1,4 @@
+../TOF/Src/app_tof.c:116:6:HardwareReset	8	static
+../TOF/Src/app_tof.c:154:6:Tof_init	8	static
+../TOF/Src/app_tof.c:180:6:Tof_conf	8	static
+../TOF/Src/app_tof.c:265:6:feedbackcontroll	152	static

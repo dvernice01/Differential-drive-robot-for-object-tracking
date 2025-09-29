@@ -1,0 +1,21 @@
+17:20:48 **** Incremental Build of configuration Debug for project HandTracking ****
+make -j8 all 
+arm-none-eabi-gcc "../TOF/Src/app_tof.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F446xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/Drivers/BSP" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/Drivers/BSP/Components" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/Drivers/BSP/STM32F4xx_Nucleo" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/Drivers/BSP/Components/vl53l5cx" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/Drivers/BSP/Components/vl53l5cx/modules" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/Drivers/BSP/Components/vl53l5cx/porting" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/TOF" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/TOF/Inc" -I"C:/Users/Utente/Desktop/LAUREA MAGISTRALE/2anno_2semestre/embedded control/PROJECT/HandTracking/TOF/Src" -O0 -ffunction-sections -fdata-sections -Wall "-u _printf_float" -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"TOF/Src/app_tof.d" -MT"TOF/Src/app_tof.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "TOF/Src/app_tof.o"
+arm-none-eabi-gcc -o "HandTracking.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Utente\Desktop\LAUREA MAGISTRALE\2anno_2semestre\embedded control\PROJECT\HandTracking\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HandTracking.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HandTracking.elf
+ 
+arm-none-eabi-size  HandTracking.elf 
+arm-none-eabi-objdump -h -S HandTracking.elf  > "HandTracking.list"
+   text	   data	    bss	    dec	    hex	filename
+ 128432	    128	   4840	 133400	  20918	HandTracking.elf
+Finished building: default.size.stdout
+ 
+Finished building: HandTracking.list
+ 
+17:20:53 **** Incremental Build of configuration Debug for project HandTracking ****
+make -j8 all 
+arm-none-eabi-size  HandTracking.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 128432	    128	   4840	 133400	  20918	HandTracking.elf
+Finished building: default.size.stdout
+ 
