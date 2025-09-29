@@ -35,35 +35,6 @@ float dc1;
 float dc2;
 float w;
 
-
-/**
- * @brief Reset hardware del sensore VL53L5CX.
- */
-
-/*void do_xtalk_calibration_once(void)
-{
-    uint8_t xtalk_buf[VL53L5CX_XTALK_BUFFER_SIZE];
-
-    // 1. esegui calibrazione (con target alluminio a 600 mm, riflettanza ~90%)
-    if (vl53l5cx_calibrate_xtalk(&p_dev, 9, 4, 600) != VL53L5CX_STATUS_OK) {
-        printf("Errore calibrazione\n");
-        return;
-    }
-
-    // 2. recupera i dati di calibrazione
-    if (vl53l5cx_get_caldata_xtalk(&p_dev, xtalk_buf) != VL53L5CX_STATUS_OK) {
-        printf("Errore get_caldata\n");
-        return;
-    }
-
-    // 3. stampa o salva i dati (qui stampo in hex per salvarli a mano)
-    printf("Dati calibrazione XtALK (da salvare):\n");
-    for (int i = 0; i < VL53L5CX_XTALK_BUFFER_SIZE; i++) {
-        printf("0x%02X, ", xtalk_buf[i]);
-        if ((i+1) % 16 == 0) printf("\n");
-    }
-}*/
-
 void HardwareReset(void) {
 
   HAL_GPIO_WritePin(PWR_EN_C_GPIO_Port, PWR_EN_C_Pin, GPIO_PIN_RESET);
@@ -76,28 +47,6 @@ void HardwareReset(void) {
   HAL_Delay(2);
 }
 
-/*void I2C_Scan(void) {
-    printf("Inizio scansione I2C...\n");
-
-    HAL_StatusTypeDef result;
-    int devices_found = 0;
-
-    for (i = 1; i < 128; i++) {
-        // Gli indirizzi I2C sono a 7 bit, quindi vanno shiftati di 1
-        result = HAL_I2C_IsDeviceReady(&hi2c1, (uint16_t)(i << 1), 2, 10);
-
-        if (result == HAL_OK) {
-            printf("Dispositivo trovato a 0x%02X\n", i << 1);
-            devices_found++;
-        }
-    }
-
-    if (devices_found == 0) {
-        printf("Nessun dispositivo trovato!\n");
-    } else {
-        printf("Scansione completata: %d dispositivi trovati.\n", devices_found);
-    }
-}*/
 
 /**
  * @brief Inizializza il sensore VL53L5CX.
@@ -129,14 +78,6 @@ void Tof_init(void) {
 }
 
 void Tof_conf(void){
-
-
-	//do_xtalk_calibration_once();
-	/*if (vl53l5cx_set_caldata_xtalk(&p_dev, (uint8_t*)my_saved_xtalk) != VL53L5CX_STATUS_OK) {
-		printf("Errore set_caldata\n");
-	} else {
-		printf("Dati XtALK caricati correttamente\n");
-	}*/
 
     if (vl53l5cx_set_resolution(&p_dev, VL53L5CX_RESOLUTION_8X8) != VL53L5CX_OK) {
         printf("Errore Set Resolution\n");
@@ -177,29 +118,12 @@ void Tof_conf(void){
 	}
 
 
-	/*if  (vl53l5cx_set_detection_thresholds_enable (&p_dev, enable) != VL53L5CX_OK) {
-		  printf("Errore Set detection thresholds enable \n");
-		  Error_Handler();
-	  } else {
-		  printf("Set detection thresholds enable OK\n");
-	}*/
-
 	if  (vl53l5cx_set_detection_thresholds_enable (&p_dev, 0) != VL53L5CX_OK) {
 			  printf("Errore Set detection thresholds enable \n");
 			  Error_Handler();
 		  } else {
 			  printf("Set detection thresholds enable OK\n");
 		}
-
-	/*for (i = 0; i < 64; i++) {
-		p_thresholds.zone_num = i;
-		if  (vl53l5cx_set_detection_thresholds(&p_dev, &p_thresholds) != VL53L5CX_OK) {
-			  printf("Errore Set detection thresholds \n");
-			  Error_Handler();
-		  } else {
-			  printf("Set detection thresholds OK\n");
-		}
-	}*/
 
 	if  (vl53l5cx_start_ranging(&p_dev) != VL53L5CX_OK) {
 		  printf("Errore start \n");
@@ -369,16 +293,12 @@ void feedbackcontroll(void){
 
 		}
 
-		printf("measured distance %d\n", (int)measured_distance);
-
 
 	    // Controllo velocità lineare (in avanti o indietro)
 		error_linear_vel = (measured_distance - desired_distance) ;
 
 	    float v = linear_gain * error_linear_vel;
 
-	    // l'if è messo perchè il centro è 4,5 visto che le colonne sono 8 quindi
-	    // potevo oscillare tra 3 e 4 e avere un comportamento anomalo
 	    max_index ++;
 	    if (max_index == 4 || max_index == 5) { //perchè max index parte da 0
 
@@ -397,11 +317,6 @@ void feedbackcontroll(void){
 
 	    dc1 = (phi1/phi_max);
 	    dc2 = (phi2/phi_max);
-
-
-	    printf("dc1 %d\n", (int) (dc1*100));
-	    printf("dc2 %d\n", (int) (dc2*100));
-
 
 	    if (dc1 > 1.0f) dc1 = 1.0f;
 	    if (dc1 < -1.0f) dc1 = -1.0f;
@@ -450,48 +365,3 @@ void feedbackcontroll(void){
 	    }
 
 }
-
-/*printf("total_cols: %d\n", total_cols);
-float index = (total_cols > 0) ? ((num_col_1*1 + num_col_2*2 + num_col_3*3 + num_col_4*4 + num_col_5*5 + num_col_6*6 + num_col_7*7 + num_col_8*8) / (float)total_cols) : 0;
-
-
-//float index = ((col_1*1) + (col_2*2) + (col_3*3) + (col_4*4) + (col_5*5) + (col_6*6) + (col_7*7) + (col_8*8))/(col_1 + col_2 + col_3 + col_4 + col_5 + col_6 + col_7 + col_8);
-//printf("index float %f\n", index); // @suppress("Float formatting support")
-if ((int)index == 1){
-	measured_distance = distance_col_1;
-	if (measured_distance == 0){
-		measured_distance = distance_col_2;
-	}
-} else if ((int)index == 2) {
-	measured_distance = distance_col_2;
-	if (measured_distance == 0){
-					measured_distance = distance_col_3;
-				}
-} else if ((int)index == 3) {
-	measured_distance = distance_col_3;
-	if (measured_distance == 0){
-					measured_distance = distance_col_4;
-				}
-} else if ((int)index == 4) {
-	measured_distance = distance_col_4;
-	if (measured_distance == 0){
-					measured_distance = distance_col_5;
-				}
-} else if ((int)index == 5) {
-	measured_distance = distance_col_5;
-	if (measured_distance == 0){
-					measured_distance = distance_col_6;
-				}
-} else if ((int)index == 6) {
-	measured_distance = distance_col_6;
-	if (measured_distance == 0){
-					measured_distance = distance_col_7;
-				}
-} else if ((int)index == 7) {
-	measured_distance = distance_col_7;
-	if (measured_distance == 0){
-					measured_distance = distance_col_8;
-				}
-} else if ((int)index == 8) {
-	measured_distance = distance_col_8;
-}*/
